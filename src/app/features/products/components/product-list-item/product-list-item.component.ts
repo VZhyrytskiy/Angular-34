@@ -9,7 +9,7 @@ import { ProductModel } from 'app/features/products/models/product.model';
     styleUrls: ['./product-list-item.component.scss']
 })
 export class ProductListItemComponent {
-    @Input() item: ProductModel | null = null;
+    @Input() item?: ProductModel;
 
     constructor(private router: Router) { }
 
