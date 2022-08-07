@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.0.2] - 2022-08-07
+### Changed
+- unsibscribe.
+- remove null initialization.
+- refactored getProductById function.
+- remove lazy-load for root component module.
+
 ## [0.0.1] - 2022-07-10
 ### Added
 - header component for navigation (according task 8).
@@ -10,3 +17,4 @@ All notable changes to this project will be documented in this file.
 - cart list compnent to display items in cart and their total price (according task 7, 8).
 
 [0.0.1]: https://github.com/illiaZakharov/Angular-34/tree/hw1
+[0.0.2]: https://github.com/illiaZakharov/Angular-34/tree/fix/task1-comments
