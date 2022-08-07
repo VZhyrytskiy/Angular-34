@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { take } from 'rxjs';
+
 import { ProductModel } from 'app/features/products/models/product.model';
 import { ProductsService } from '../../services/products.service';
 
@@ -18,8 +20,10 @@ export class ProductListComponent implements OnInit {
     }
 
     private loadProducts(): void {
-        this.productsService.getProducts().subscribe((prodcuts) => {
-            this.productList = prodcuts;
-        });
+        this.productsService.getProducts()
+            .pipe(take(1))
+            .subscribe((prodcuts) => {
+                this.productList = prodcuts;
+            });
     }
 }
