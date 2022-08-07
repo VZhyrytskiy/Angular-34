@@ -14,6 +14,6 @@ export class ProductsService {
     }
 
     getProductById(id: number): Observable<ProductModel | null> {
-        return of(productListMock.filter((product => product.id === id))[0] || null);
+        return of(productListMock.find((product => product.id === id)) || null);
     }
 }

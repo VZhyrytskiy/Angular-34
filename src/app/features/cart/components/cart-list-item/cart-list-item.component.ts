@@ -9,7 +9,7 @@ import { CartItemModel } from '../../models/cart-item.model';
     styleUrls: ['./cart-list-item.component.scss']
 })
 export class CartListItemComponent {
-    @Input() item: CartItemModel | null = null;
+    @Input() item?: CartItemModel;
 
     @Output() remove = new EventEmitter<void>();
 
