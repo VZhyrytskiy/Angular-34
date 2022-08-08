@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { MaterialModule } from './material/material.module';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { HighlightDirective } from './directives/highlight.directive';
 
 @NgModule({
     declarations: [
-        TruncatePipe
+        TruncatePipe,
+        HighlightDirective
     ],
     imports: [
         CommonModule,
@@ -15,6 +17,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     exports: [
         MaterialModule,
         TruncatePipe,
+        HighlightDirective,
     ]
 })
 export class SharedModule { }

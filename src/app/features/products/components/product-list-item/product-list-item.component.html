@@ -12,11 +12,11 @@
         </span>
 
         <div>
-            <button mat-button color="primary" type="button" (click)="onViewProduct(item.id)">
+            <button mat-button color="primary" type="button" (click)="onViewProduct()">
                 {{ 'View' | uppercase }}
             </button>
 
-            <button mat-button color="primary" type="button" (click)="onAddToCart(item.id)"
+            <button mat-button color="primary" type="button" (click)="onAddToCart()"
                 [disabled]="!item.isAvailable">
                 {{ 'Buy' | uppercase }}
             </button>
