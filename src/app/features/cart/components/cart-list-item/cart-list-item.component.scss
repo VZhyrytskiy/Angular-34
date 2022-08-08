@@ -24,11 +24,21 @@
     }
 
     &__quantity {
-        width: 50px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    &__quantity mat-icon {
+        cursor: pointer;
     }
 
     &__remove {
         color: #f00;
         cursor: pointer;
     }
+}
+
+.highlighted {
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
 }

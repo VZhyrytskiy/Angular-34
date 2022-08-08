@@ -2,6 +2,11 @@
     <h2 class="list__title">Products</h2>
 
     <div class="list__items">
-        <app-product-list-item *ngFor="let product of productList" [item]="product"></app-product-list-item>
+        <app-product-list-item 
+            *ngFor="let product of productList" 
+            [item]="product"
+            (addToCart)="addProductToCart(product)"
+            (viewProduct)="navigateToProduct(product.id)"
+        ></app-product-list-item>
     </div>
 </section>

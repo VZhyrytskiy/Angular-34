@@ -5,6 +5,7 @@ import { take } from 'rxjs';
 
 import { ProductModel } from 'app/features/products/models/product.model';
 import { ProductsService } from '../../services/products.service';
+import { CartService } from 'app/features/cart/services/cart.service';
 
 @Component({
     selector: 'app-product',
@@ -17,12 +18,19 @@ export class ProductComponent implements OnInit {
 
     constructor(
         private productsService: ProductsService,
+        private cartService: CartService,
         private activatedRoute: ActivatedRoute,
     ) { }
 
     ngOnInit(): void {
         this.productId = Number(this.activatedRoute.snapshot.params['id']);
         this.loadProduct();
+    }
+
+    addToCart(): void {
+        if (!this.product?.isAvailable) return;
+        
+        this.cartService.addToCart(this.product);
     }
 
     private loadProduct(): void {

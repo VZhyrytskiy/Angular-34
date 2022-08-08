@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { ProductModel } from 'app/features/products/models/product.model';
 
@@ -11,17 +10,16 @@ import { ProductModel } from 'app/features/products/models/product.model';
 export class ProductListItemComponent {
     @Input() item?: ProductModel;
 
-    constructor(private router: Router) { }
+    @Output() addToCart = new EventEmitter<void>();
+    @Output() viewProduct = new EventEmitter<void>();
 
-    onAddToCart(id: number): void {
-        if (!this.item?.isAvailable) {
-            return;
-        }
+    onAddToCart(): void {
+        if (!this.item?.isAvailable) return;
 
-        console.log(`Order #${id} was added to cart!`);
+        this.addToCart.emit();
     }
 
-    onViewProduct(id: number): void {
-        this.router.navigate(['/products', id]);
+    onViewProduct(): void {
+        this.viewProduct.emit();
     }
 }

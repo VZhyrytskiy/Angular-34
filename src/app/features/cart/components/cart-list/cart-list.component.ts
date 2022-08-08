@@ -1,25 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { CartItemModel } from '../../models/cart-item.model';
-import { cartListMock } from './cart-list.mock';
+import { CartService } from '../../services/cart.service';
 
 @Component({
     selector: 'app-cart-list',
     templateUrl: './cart-list.component.html',
-    styleUrls: ['./cart-list.component.scss']
+    styleUrls: ['./cart-list.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CartListComponent implements OnInit {
-    productList: CartItemModel[] = [];
+export class CartListComponent {
+    products$ = this.cartService.cartProducts$;
+    totalPrice$ = this.cartService.cartTotalPrice$;
+    totalQuantity$ = this.cartService.cartTotalQuantity$;
 
-    get totalPrice(): number {
-        return this.productList.reduce((prev, curr) => prev + curr.price, 0);
+    constructor(
+        private router: Router,
+        private cartService: CartService,
+    ) { }
+
+    removeFromCart(id: number): void {
+        this.cartService.removeFromCart(id);
     }
 
-    ngOnInit(): void {
-        this.loadProducts();
+    decreaseQuantity(product: CartItemModel): void {
+        this.cartService.decreaseAmount(product);
     }
 
-    removeItemFromList(index: number): void {
-        this.productList?.splice(index, 1);
+    increaseQuantity(product: CartItemModel): void {
+        this.cartService.increaseAmount(product);
+    }
+
+    navigateToProduct(id: number): void {
+        this.router.navigate(['/products', id]);
     }
 
     trackByItems(index: number, item: CartItemModel): number {
@@ -28,9 +42,5 @@ export class CartListComponent implements OnInit {
 
     onSubmitOrder(): void {
         console.log('Order submitted');
-    }
-
-    private loadProducts(): void {
-        this.productList = cartListMock;
     }
 }

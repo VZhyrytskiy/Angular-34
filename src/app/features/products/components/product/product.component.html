@@ -14,7 +14,7 @@
                 ({{ product.isAvailable ? 'In stock' : 'Out of Stock'}})
             </p>
 
-            <button mat-flat-button color="primary" [disabled]="!product.isAvailable">
+            <button mat-flat-button color="primary" [disabled]="!product.isAvailable" (click)="addToCart()">
                 {{ 'Buy now' | uppercase }}
             </button>
         </article>

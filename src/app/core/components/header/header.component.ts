@@ -1,10 +1,15 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  @Input() title: string = '';
+    @ViewChild('appTitle') appTitleElement!: ElementRef<HTMLHeadingElement>;
+    @Input() title: string = '';
+
+    ngAfterViewInit() {
+        this.appTitleElement.nativeElement.innerText = this.title;
+    }
 }

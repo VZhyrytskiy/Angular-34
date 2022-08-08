@@ -1,25 +1,34 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { CartItemModel } from '../../models/cart-item.model';
 
 @Component({
     selector: 'app-cart-list-item',
     templateUrl: './cart-list-item.component.html',
-    styleUrls: ['./cart-list-item.component.scss']
+    styleUrls: ['./cart-list-item.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CartListItemComponent {
     @Input() item?: CartItemModel;
 
     @Output() remove = new EventEmitter<void>();
-
-    constructor(private router: Router) { }
+    @Output() viewProduct = new EventEmitter<void>();
+    @Output() increase = new EventEmitter<void>();
+    @Output() decrease = new EventEmitter<void>();
 
     onRemoveItem(): void {
         this.remove.emit();
     }
 
-    redirectToProduct(): void {
-        this.router.navigate(['/products', this.item?.id]);
+    onViewProduct(): void {
+        this.viewProduct.emit();
+    }
+
+    onQuantityDecrease(): void {
+        this.decrease.emit();
+    }
+    
+    onQuantityIncrease(): void {
+        this.increase.emit();
     }
 }
