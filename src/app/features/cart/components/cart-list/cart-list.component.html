@@ -2,14 +2,14 @@
     <h2 class="list__title">Cart</h2>
 
     <ng-container *ngIf="products$ | async as cartItems">
-        <div class="list__container" *ngIf="cartItems.length; else empty">
+        <div class="list__container" *ngIf="!isEmptyCart; else empty">
             <div class="list__items">
                 <app-cart-list-item 
                     *ngFor="let item of cartItems; index as i; trackBy: trackByItems"
                     [item]="item"
-                    (decrease)="decreaseQuantity(item)"
-                    (increase)="increaseQuantity(item)"
-                    (remove)="removeFromCart(item.id)" 
+                    (decrease)="decreaseProductQuantity(item)"
+                    (increase)="increaseProductQuantity(item)"
+                    (remove)="removeProductFromCart(item.id)" 
                     (viewProduct)="navigateToProduct(item.id)"
                 ></app-cart-list-item>
             </div>
@@ -25,6 +25,10 @@
 
                 <button mat-flat-button color="primary" (click)="onSubmitOrder()">
                     Submit order
+                </button>
+
+                <button mat-flat-button color="warn" (click)="onClearCart()">
+                    Clear
                 </button>
             </aside>
         </div>
