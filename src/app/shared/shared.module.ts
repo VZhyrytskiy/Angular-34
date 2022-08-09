@@ -4,11 +4,13 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material/material.module';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { HighlightDirective } from './directives/highlight.directive';
+import { ZoomDirective } from './directives/zoom.directive';
 
 @NgModule({
     declarations: [
         TruncatePipe,
-        HighlightDirective
+        HighlightDirective,
+        ZoomDirective,
     ],
     imports: [
         CommonModule,
@@ -18,6 +20,7 @@ import { HighlightDirective } from './directives/highlight.directive';
         MaterialModule,
         TruncatePipe,
         HighlightDirective,
+        ZoomDirective,
     ]
 })
 export class SharedModule { }

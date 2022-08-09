@@ -15,20 +15,24 @@ export class CartListComponent {
     totalPrice$ = this.cartService.cartTotalPrice$;
     totalQuantity$ = this.cartService.cartTotalQuantity$;
 
+    get isEmptyCart(): boolean {
+        return this.cartService.isEmptyCart();
+    }
+
     constructor(
         private router: Router,
         private cartService: CartService,
     ) { }
 
-    removeFromCart(id: number): void {
+    removeProductFromCart(id: number): void {
         this.cartService.removeFromCart(id);
     }
 
-    decreaseQuantity(product: CartItemModel): void {
+    decreaseProductQuantity(product: CartItemModel): void {
         this.cartService.decreaseAmount(product);
     }
 
-    increaseQuantity(product: CartItemModel): void {
+    increaseProductQuantity(product: CartItemModel): void {
         this.cartService.increaseAmount(product);
     }
 
@@ -42,5 +46,9 @@ export class CartListComponent {
 
     onSubmitOrder(): void {
         console.log('Order submitted');
+    }
+
+    onClearCart(): void {
+        this.cartService.removeAllFromCart();
     }
 }

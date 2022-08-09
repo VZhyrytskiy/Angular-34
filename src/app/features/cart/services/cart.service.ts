@@ -22,6 +22,10 @@ export class CartService {
         map(items => items.reduce((prev, curr) => prev + curr.quantity, 0)),
     );
 
+    isEmptyCart(): boolean {
+        return !this.cartProducts$$.getValue().size;
+    }
+
     addToCart(product: ProductModel): void {
         let cartItem: CartItemModel = {
             ...product,
@@ -37,26 +41,29 @@ export class CartService {
         this.cartProducts$$.next(this.cartProducts$$.value);
     }
 
-    decreaseAmount(product: CartItemModel): void {
-        const item = this.cartProducts$$.value.get(product.id);
-
-        if (!item || item.quantity === 1) return;
-
-        this.cartProducts$$.value.set(product.id, {
-            ...item,
-            quantity: --item.quantity,
-        });
+    removeAllFromCart(): void {
+        this.cartProducts$$.getValue().clear();
         this.cartProducts$$.next(this.cartProducts$$.value);
     }
 
+    decreaseAmount(product: CartItemModel): void {
+        this.changeQuantity(product, -1);
+    }
+
     increaseAmount(product: CartItemModel): void {
+        this.changeQuantity(product, 1);
+    }
+
+    private changeQuantity(product: CartItemModel, amount: number = 0): void {
         const item = this.cartProducts$$.getValue().get(product.id);
 
-        if (!item) return;
+        if (!item || !amount) return;
+        
+        const quantity = item.quantity += amount; 
 
         this.cartProducts$$.value.set(product.id, {
             ...item,
-            quantity: ++item.quantity,
+            quantity: quantity < 1 ? 1 : quantity,
         });
         this.cartProducts$$.next(this.cartProducts$$.value);
     }

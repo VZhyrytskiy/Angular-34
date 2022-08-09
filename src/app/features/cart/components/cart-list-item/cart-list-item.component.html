@@ -1,6 +1,6 @@
 <div *ngIf="item" class="item" appHighlight>
     <div class="item__img">
-        <img [src]="item.srcImg" alt="">
+        <img [src]="item.srcImg" alt="" [appZoom]="5">
     </div>
 
     <h3 class="item__title" (click)="onViewProduct()">{{ item.name }}</h3>
