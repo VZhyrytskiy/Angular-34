@@ -10,6 +10,8 @@ All notable changes to this project will be documented in this file.
 - ability to clear all products in cart.
 - id generator.
 - local storage service.
+- zoom product image in cart.
+- log additional info from optional services on product page.
 
 ## [0.2.0] - 2022-08-08
 ### Changed
