@@ -36,8 +36,8 @@ export class ProductListComponent implements OnInit {
     private loadProducts(): void {
         this.productsService.getProducts()
             .pipe(take(1))
-            .subscribe((prodcuts) => {
-                this.productList = prodcuts;
+            .subscribe((products) => {
+                this.productList = products;
             });
     }
 }

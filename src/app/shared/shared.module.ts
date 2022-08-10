@@ -13,7 +13,9 @@ import { ZoomDirective } from './directives/zoom.directive';
         ZoomDirective,
     ],
     imports: [
-        CommonModule,
+      CommonModule,
+      // если директивы, компоненты, пайпы текущего модуля не используют
+      // этот модуль, то его можно не импортировать, а только экспортировать
         MaterialModule,
     ],
     exports: [

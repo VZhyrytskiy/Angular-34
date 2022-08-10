@@ -11,6 +11,10 @@ const routes: Routes = [
     },
     {
         path: 'products',
+        // есть подозрение, что это не ленивая загрузка
+        // судя по документации https://next.angular.io/api/router/LoadChildrenCallback
+        // это свойство должно принимать функцию определенного вида
+        // в чем суть такого варианта использования?
         loadChildren: () => ProductsModule,
     },
     {
